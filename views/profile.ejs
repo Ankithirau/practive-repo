@@ -1,0 +1,37 @@
+<%- include('./partials/Header.ejs') %>
+
+    <div class="container mt-4 mb-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow">
+                    <div class="card-body text-center">
+                        <img src="<%= users.data?.avatar %>" alt="Profile Picture"
+                            class="img-fluid rounded-circle mb-3">
+                        <h3><%= users.data?.first_name + ' ' + users.data?.last_name  %></h3>
+                        <p class="text-muted">@email: <%= users.data?.email %></p>
+                        <div class="d-flex justify-content-center">
+                            <a href="#" class="btn btn-primary btn-sm mr-2"><i class="fa fa-facebook-f"></i></a>
+                            &nbsp;<a href="#" class="btn btn-info btn-sm mr-2"> <i class="fa fa-twitter"></i></a>
+                         &nbsp;<a href="#" class="btn btn-danger btn-sm"> <i class="fa fa-google"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h4>About Me</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel lorem ac enim pretium
+                            laoreet. Suspendisse semper, mi a luctus euismod, magna sapien sagittis urna, vel convallis
+                            nulla libero ac est. Sed iaculis dui ut diam ultricies bibendum. Etiam et feugiat orci,
+                            vitae dictum velit. Fusce hendrerit ante eu sapien pharetra, non hendrerit mauris venenatis.
+                            Morbi non tortor non est consequat consequat eget eu ipsum. Pellentesque ut bibendum eros,
+                            vitae vestibulum elit. Integer vel nulla orci. In hac habitasse platea dictumst. Fusce vel
+                            lorem ante. Nunc id dui nunc.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('./partials/Footer.ejs') %>
