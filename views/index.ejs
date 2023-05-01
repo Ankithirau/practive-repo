@@ -1,0 +1,35 @@
+<%- include('./partials/Header.ejs') %>
+
+    <div class="container-fluid">
+        <div class="container mt-4 ">
+            <div class="row">
+                <% users?.data.forEach(function(user){ %>
+                    <div class="card m-4 shadow" style="width: 18rem;">
+                        <img class="card-img-top img-fluid" src="<%= user.avatar  %>" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= user.first_name + '  ' + user.last_name %>
+                            </h5>
+                            <p class="card-text">@email: <%= user.email %>
+                            </p>
+                            <a href="profile/<%= user.id %>" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item shadow">
+                        <a class="page-link" href="/?page=<%= (users.page)>1?users.page-1:'' %>">Previous</a></li>
+                    <% for( let index=0; index < users.total_pages; index++ ) { %>
+                        <li class="page-item shadow"><a class="page-link" href="/?page=<%= index+1 %>">
+                                <%= index+1 %>
+                            </a></li>
+                        <% } %>
+                    <li class="page-item shadow"><a class="page-link" href="/?page=<%= (users.page)<users.total_pages?users.page+1:1 %>">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <%- include('./partials/Footer.ejs') %>
