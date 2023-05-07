@@ -1,3 +1,13 @@
+const express = require('express');
+const session = require('express-session');
+const app = express();
+
+app.use(session({
+    secret: 'secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}));
 
 const axios = require('axios');
 const url = require('url');
@@ -8,7 +18,8 @@ const ListController = (req, res) => {
   axios.get('https://reqres.in/api/users' + queryParam)
     .then(response => {
       const users = response.data;
-      res.render('index', { users });
+      const loggedIn = req.session.loggedIn??null;
+      res.render('index', { users:users,loggedIn:loggedIn });
     })
     .catch(error => {
       console.log(error);
@@ -21,7 +32,9 @@ const profileController =(req,res)=>{
   axios.get('https://reqres.in/api/users/' + profileId)
   .then(response => {
     const users = response.data;
-    res.render('profile', { users });
+    const loggedIn = req.session.loggedIn??null;
+
+    res.render('profile', { users:users,loggedIn:loggedIn });
   })
   .catch(error => {
     console.log(error);
