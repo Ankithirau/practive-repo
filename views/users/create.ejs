@@ -1,40 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" />
-    <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-</head>
-<body>
+<%- include('../partials/Header.ejs') %>
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <% if (typeof errors !=='undefined' ) { %>
+                    <div class="alert alert-danger">
+                      <% errors.forEach(error=> { %>
+                        <%= error %>
+                          <% }); %>
+                    </div>
+                <% } %>
+                    <% if (typeof msg !=='undefined' ) { %>
+                    <div class="alert alert-<%= status==200?'success':'danger'  %>">
+                          <%= msg %>
+                    </div>
+                <% } %>
                 <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title text-center">Simple CRUD Page</h5>
+                        <h5 class="card-title text-center">Create Users</h5>
                     </div>
                     <div class="card-body">
-                        <form method="POST">
+                        <form method="POST" action="/create-user">
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" required>
+                                <input type="text" class="form-control" id="name" name="name" value="<%= (typeof formData !=='undefined' )?formData.name:'' %>">
                             </div>
                             <div class="form-group">
-                                <label for="email">Email address</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
+                                <label for="job">Job</label>
+                                <input type="text" class="form-control" id="job" name="job" value="<%= (typeof formData !=='undefined' )?formData.job:'' %>">
                             </div>
                             <div class="form-group">
-                                <label for="phone">Phone</label>
-                                <input type="text" class="form-control" id="phone" name="phone" required>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block" name="submit">Submit</button>
+                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
                             </div>
                         </form>
                     </div>
