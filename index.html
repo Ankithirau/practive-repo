@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Promises</title>
+</head>
+
+<body>
+    <h1>Learn About Javascript Promises</h1>
+    <script>
+
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve("Game is ready!");
+            }, 5000);
+        });
+
+        promise.then((res) => {
+            console.log('completed ' + res);
+        }).catch((rej) => {
+            console.log('completed ' + rej);
+        }).finally(e => console.log('logging'));
+
+
+        function apiGetter() {
+            try {
+                let response = fetch('https://jsonplaceholder.typicode.com/todos/1');
+                response.then(val => val.json()).then(data => {
+                    console.log(data);
+                }).catch(err=>console.log(err))
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        apiGetter();
+    </script>
+</body>
+
+</html>
